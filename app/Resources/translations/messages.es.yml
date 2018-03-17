@@ -4,4 +4,8 @@ form:
   name: Nombre
   code: Código
   active: Activo
+  price: Precio
+  brand: Marca
+  select: Seleccione
+  category: Categoría
   description: Descripción

@@ -6,9 +6,9 @@ AppBundle\Entity\Category:
         code:
             - NotNull:
                   message: "Debes ingresar un código válido = *El código no puede tener espacios ni caracteres especiales."
-#            - Expression:
-#                expression: "this.getTipoContrato() == ['Planta'] or this.getEmail() matches '/[a-zA-Z]+@+((originarsoluciones\.com)|(onest\.co)|(cooexpocredit\.com))/'"
-#                message: "Debe ingresar su correo corporativo: xxx@originarsoluciones.com, xxx@onest.co, xxx@cooexpocredit.com"
+            - Regex:
+                pattern: "/^[a-zA-Z0-9]+$/"
+                message: "Debes ingresar un código válido = *El código no puede tener espacios ni caracteres especiales."
         name:
             - NotNull:
                 message: "Debes ingresar tu número de celular (10 dígitos)."
@@ -19,3 +19,27 @@ AppBundle\Entity\Category:
 #            - Type:
 #                  type: numeric
 
+AppBundle\Entity\Product:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: code
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    properties:
+        code:
+            - NotNull:
+                  message: "Debes ingresar un código válido = *El código no puede tener espacios ni caracteres especiales."
+            - Regex:
+                  pattern: "/^[a-zA-Z0-9]+$/"
+                  message: "Debes ingresar un código válido = *El código no puede tener espacios ni caracteres especiales."
+            - Length:
+                min: 4
+                max: 10
+                minMessage: "El nombre debe tener por lo menos {{ limit }} caracteres de largo"
+        name:
+            - NotNull:
+                message: "Debes ingresar tu número de celular (10 dígitos)."
+            - Length:
+                min: 4
+                minMessage: "El nombre debe tener por lo menos {{ limit }} caracteres de largo"
+        price:
+            - Type:
+                  type: numeric

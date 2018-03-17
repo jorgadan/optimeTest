@@ -4,7 +4,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2>Lista de Categorías</h2>
+        <h2>Lista de Productos</h2>
     </div>
     <div class="panel-body">
 
@@ -13,19 +13,23 @@
             <tr class="replace-inputs">
                 <th>Nombre</th>
                 <th>Código</th>
+                <th>Precio</th>
+                <th>Marca</th>
                 <th>Descripción</th>
-                <th>Activo</th>
+                <th>Categoría</th>
                 <th>Acción</th>
             </tr>
             </thead>
             <tbody>
-            {% for category in categories %}
+            {% for product in products %}
                 <tr>
-                    <td>{{ category.name }}</td>
-                    <td>{{ category.code }}</td>
-                    <td>{{ category.description }}</td>
-                    <td><i class="glyphicon glyphicon-{% if category.active %}ok{% else %}remove{% endif %}"></i></td>
-                    <td><a href="{{ path('category_edit', {id: category.id}) }}"><i class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Editar"></i></a>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.code }}</td>
+                    <td>{{ product.price|number_format(2,',','.') }}</td>
+                    <td>{{ product.brand }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.categoryId.name }}</td>
+                    <td><a href="{{ path('product_edit', {id: product.id}) }}"><i class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Editar"></i></a>
                         {#<a href="{{ path('user_delete', {id: user.id}) }}"><i class="icon-trash" data-toggle="tooltip" title="Eliminar"></i></a><br>#}
                     </td>
                 </tr>
@@ -33,7 +37,7 @@
             </tbody>
         </table>
         <br>
-        <a class="btn btn-success pull-right" href="{{ path('category_new') }}">Crear nueva categoría</a>
+        <a class="btn btn-success pull-right" href="{{ path('product_new') }}">Crear nuevo producto</a>
         <br>
     </div>
 </div>

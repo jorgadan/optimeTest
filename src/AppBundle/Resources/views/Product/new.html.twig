@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>Creación de Productos
+            <a onclick="window.history.back()" class="btn btn-info pull-right">Volver</a>
+        </h2>
+    </div>
+    <div class="panel-body">
+        {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

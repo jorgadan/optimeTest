@@ -6,3 +6,8 @@ category:
     resource: '@AppBundle/Controller/CategoryController.php'
     type: annotation
     prefix: 'category'
+
+product:
+    resource: '@AppBundle/Controller/ProductController.php'
+    type: annotation
+    prefix: 'product'

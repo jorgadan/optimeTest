@@ -27,7 +27,7 @@ class CategoryController extends Controller
     public function editAction(Category $category, Request $request)
     {
         $form = $this->createForm(CategoryType::class, $category)
-            ->add('submit', SubmitType::class, array('label'=>'form.edit'));
+            ->add('submit', SubmitType::class, array('label'=>'form.edit', 'attr'=>array('class'=>'btn btn-success pull-right')));
         if($request->isMethod('POST')){
             $form->handleRequest($request);
             if($form->isValid()){
@@ -62,15 +62,5 @@ class CategoryController extends Controller
         return $this->render('AppBundle:Category:new.html.twig',array(
             'form' => $form->createView()
         ));
-    }
-
-    /**
-     * @Route("/delete/{id}", name="category_delete")
-     */
-    public function deleteAction(Category $category)
-    {
-        $this->get('doctrine.orm.entity_manager')->remove($category);
-
-        return $this->redirectToRoute('category_index');
     }
 }
