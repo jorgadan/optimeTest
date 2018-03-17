@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Product
  *
- * @ORM\Table(name="products",options={"collate"="utf8mb4_unicode_ci"})
+ * @ORM\Table(name="products",options={"charset"="utf8mb4","collate"="utf8mb4_unicode_ci"})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
  */
 class Product
@@ -68,6 +68,22 @@ class Product
     public function setPrice($price)
     {
         $this->price = $price;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
+    }
+
+    /**
+     * @param Category $categoryId
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->categoryId = $categoryId;
     }
 }
 

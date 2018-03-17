@@ -11,7 +11,7 @@ trait TimestamplableTrait
      * @var \DateTime $createdAt
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     protected $createdAt;
 

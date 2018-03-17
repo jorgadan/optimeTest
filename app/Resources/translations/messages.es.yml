@@ -1,0 +1,6 @@
+form:
+  create: Crear
+  name: Nombre
+  code: Código
+  active: Activo
+  description: Descripción

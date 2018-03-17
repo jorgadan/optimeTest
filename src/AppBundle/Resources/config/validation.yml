@@ -1,0 +1,21 @@
+AppBundle\Entity\Category:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: code
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    properties:
+        code:
+            - NotNull:
+                  message: "Debes ingresar un código válido = *El código no puede tener espacios ni caracteres especiales."
+#            - Expression:
+#                expression: "this.getTipoContrato() == ['Planta'] or this.getEmail() matches '/[a-zA-Z]+@+((originarsoluciones\.com)|(onest\.co)|(cooexpocredit\.com))/'"
+#                message: "Debe ingresar su correo corporativo: xxx@originarsoluciones.com, xxx@onest.co, xxx@cooexpocredit.com"
+        name:
+            - NotNull:
+                message: "Debes ingresar tu número de celular (10 dígitos)."
+            - Length:
+                min: 2
+#                max: 12
+                minMessage: "El nombre debe tener por lo menos {{ limit }} caracteres de largo"
+#            - Type:
+#                  type: numeric
+
