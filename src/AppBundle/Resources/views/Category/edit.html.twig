@@ -14,9 +14,7 @@
             {{ form_end(edit_form) }}
 
             <div class="row">
-            {{ form_start(delete_form) }}
-                <input class="btn btn-warning pull-right" type="submit" value="Borrar">
-            {{ form_end(delete_form) }}
+                <a href="{{ path('category_delete', {'id': category.id}) }}" class="btn btn-warning pull-right" type="submit">Borrar</a>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 form:
   create: Crear
+  edit: Guardar
   name: Nombre
   code: Código
   active: Activo

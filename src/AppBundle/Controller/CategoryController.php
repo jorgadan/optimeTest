@@ -24,12 +24,21 @@ class CategoryController extends Controller
     /**
      * @Route("/edit/{id}", name="category_edit")
      */
-    public function editAction(Category $category)
+    public function editAction(Category $category, Request $request)
     {
         $form = $this->createForm(CategoryType::class, $category)
             ->add('submit', SubmitType::class, array('label'=>'form.edit'));
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+            if($form->isValid()){
+                $this->get('doctrine.orm.entity_manager')->persist($category);
+                $this->get('doctrine.orm.entity_manager')->flush();
+                return $this->redirectToRoute('category_index');
+            }
+        }
         return $this->render('AppBundle:Category:edit.html.twig',array(
-            'edit_form' => $form->createView()
+            'edit_form' => $form->createView(),
+            'category' => $category
         ));
     }
 
@@ -39,6 +48,7 @@ class CategoryController extends Controller
     public function newAction(Request $request)
     {
         $category = new Category();
+        $category->setActive(true);
         $form = $this->createForm(CategoryType::class, $category)
             ->add('submit', SubmitType::class, array('label'=>'form.create', 'attr'=>array('class'=>'btn btn-success pull-right')));
         if($request->isMethod('POST')){
@@ -46,11 +56,21 @@ class CategoryController extends Controller
             if($form->isValid()){
                 $this->get('doctrine.orm.entity_manager')->persist($category);
                 $this->get('doctrine.orm.entity_manager')->flush();
-                $this->redirectToRoute('category_index');
+                return $this->redirectToRoute('category_index');
             }
         }
         return $this->render('AppBundle:Category:new.html.twig',array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("/delete/{id}", name="category_delete")
+     */
+    public function deleteAction(Category $category)
+    {
+        $this->get('doctrine.orm.entity_manager')->remove($category);
+
+        return $this->redirectToRoute('category_index');
     }
 }

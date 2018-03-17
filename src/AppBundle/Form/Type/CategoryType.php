@@ -21,7 +21,6 @@ class CategoryType extends AbstractType
             ->add('active', CheckboxType::class, array(
                 'label'=> 'form.active',
                 'required'=>false,
-                'data' => true
             ))
         ;
     }
